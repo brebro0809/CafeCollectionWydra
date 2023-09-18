@@ -9,11 +9,20 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var displayLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let items = ["coffee", "tea", "espresso", "bagel", "donut"]
+        let prices = [5.00, 3.50, 3.00, 5.00, 6.75]
+        
+        displayLabel.text = ""
+        
+        for index in 0..<(items.count){
+            displayLabel.text = (displayLabel.text ?? "") + "\(items[index]): \(prices[index]), "
+        }
     }
-
-
+    
 }
 
