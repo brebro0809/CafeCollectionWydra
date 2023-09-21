@@ -9,18 +9,21 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var displayLabel: UILabel!
+
+    @IBOutlet weak var mainText: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mainText.isEditable = false
+        
         let items = ["coffee", "tea", "espresso", "bagel", "donut"]
         let prices = [5.00, 3.50, 3.00, 5.00, 6.75]
         
-        displayLabel.text = ""
+        mainText.text = ""
         
         for index in 0..<(items.count){
-            displayLabel.text = (displayLabel.text ?? "") + "\(items[index]): \(prices[index]), "
+            mainText.text = (mainText.text ?? "") + "- \(items[index]): \(prices[index]) \n"
         }
     }
     
