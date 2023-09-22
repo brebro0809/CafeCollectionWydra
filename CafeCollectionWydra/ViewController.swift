@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var amountInput: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var passwordInput: UITextField!
     
     var items = ["coffee", "tea", "espresso", "bagel", "donut"]
     var prices = [5.00, 3.50, 3.00, 5.00, 6.75]
