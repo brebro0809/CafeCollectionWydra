@@ -36,12 +36,12 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func cartPressed(_ sender: UIButton) {
+    func addItem(){
         if let index = items.firstIndex(of: itemInput.text ?? "") {
             if let amount = Int(amountInput.text ?? ""){
                 errorLabel.isHidden = true
                 
-                if let inCart = cart[index] {
+                if cart[index] != nil {
                     errorLabel.text = "Item Already In Cart :)"
                     errorLabel.isHidden = false
                 } else {
@@ -60,7 +60,47 @@ class ViewController: UIViewController {
         }
     }
     
+    func logItem(){
+        if let i = Int(itemInput.text ?? ""){
+            errorLabel.text = "Item must be string"
+            errorLabel.isHidden = false
+        } else if (itemInput.text != ""){
+            if let j = items.firstIndex(of: itemInput.text!){
+                errorLabel.text = "Item already exists"
+                errorLabel.isHidden = false
+            } else {
+                if let i = Double(amountInput.text!) {
+                    errorLabel.isHidden = true
+                    
+                    items.append(itemInput.text!)
+                    prices.append(i)
+                    updateCart()
+                } else {
+                    errorLabel.text = "Price must be double"
+                    errorLabel.isHidden = false
+                }
+            }
+        } else {
+            errorLabel.text = "Name can't be empty"
+            errorLabel.isHidden = false
+        }
+    }
+    
+    @IBAction func cartPressed(_ sender: UIButton) {
+        
+        if(passwordInput.text == "pony"){
+            logItem()
+        } else {
+            addItem()
+        }
+    }
+    
     func updateCart() {
+        mainText.text = ""
+        for index in 0..<(items.count){
+            mainText.text = (mainText.text ?? "") + "- \(items[index]): \(prices[index]) \n"
+        }
+        
         cartText.text = ""
         var total = 0.0
         
